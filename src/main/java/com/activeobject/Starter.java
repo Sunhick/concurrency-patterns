@@ -36,7 +36,6 @@ public class Starter {
 			
 			for (Thread t : workers) {
 				t.join();
-				
 			}
 		}
 		
