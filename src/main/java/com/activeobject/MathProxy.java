@@ -1,6 +1,5 @@
 package com.activeobject;
 
-import java.io.Closeable;
 import java.io.IOException;
 
 public class MathProxy implements AsyncOperations, AutoCloseable {
