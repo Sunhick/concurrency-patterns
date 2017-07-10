@@ -7,7 +7,7 @@ public class Future {
 	
 	public synchronized Integer getAnswer() throws Exception {
 		if (answer == null || !answer.isPresent()) {
-			System.out.println("waiting for server");
+			// System.out.println("waiting for server");
 			this.wait();
 		}
 		

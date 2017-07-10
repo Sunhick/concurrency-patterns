@@ -11,22 +11,16 @@ public class MathProxy implements AsyncOperations, AutoCloseable {
 	}
 	
 	@Override
-	protected void finalize() throws Throwable {
-		super.finalize();
-		System.out.println("fnalize");
-	}
-	
-	@Override
 	public Future add(Integer x, Integer y) {
 		Future f = new Future();
 		// place a async request for add operation.
-		math.add(x, y, f);
+		math.addAsync(x, y, f);
 		return f;
 	}
 
 	@Override
 	public void close() throws IOException {
-		System.out.println("in close");
+		// System.out.println("in close");
 		math.stop();
 	}
 

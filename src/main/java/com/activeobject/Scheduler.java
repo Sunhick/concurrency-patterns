@@ -2,28 +2,38 @@ package com.activeobject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Scheduler {
-	private BlockingQueue<Runnable> tasks;
+	private BlockingQueue<Runnable> tasks = new LinkedBlockingQueue<>();
 	private List<PoolThread> threads = new ArrayList<>();
+	private Object lock = new Object();
 	
-	public Scheduler(BlockingQueue<Runnable> t, int count) {
-		tasks = t;
-		
+	public Scheduler(int count) {
 		for (int i=0; i< count; i++) {
             threads.add(new PoolThread(tasks));
         }
 	}
 	
 	public void stop() {
-		for (PoolThread p : threads) {
-			p.doStop();
+		synchronized (lock) {
+			for (PoolThread p : threads) {
+				p.doStop();
+			}	
 		}
 	}
 	
 	public void start() {
-		for (PoolThread p : threads) {
-			p.start();
+		synchronized(lock) {
+			for (PoolThread p : threads) {
+				p.start();
+			}
+		}
+	}
+
+	public void addTask(Runnable runnable) throws InterruptedException {
+		synchronized(lock) {
+			tasks.put(runnable);
 		}
 	}
 	

@@ -1,5 +1,5 @@
 package com.activeobject;
 
 public interface Operations {
-	void add(Integer x, Integer y, Future f);
+	void addAsync(Integer x, Integer y, Future f);
 }
