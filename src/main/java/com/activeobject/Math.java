@@ -19,10 +19,7 @@ public class Math implements Operations {
 		// System.out.println("here");
 		try {
 			// System.out.println("add. id = " + Thread.currentThread().getId());
-			sched.addTask(new Task() {
-				
-				@Override
-				public void invoke() {
+			sched.addTask(() -> {
 					try {
 						Thread.sleep(3000);
 						synchronized(ftr) {
@@ -38,8 +35,7 @@ public class Math implements Operations {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-				}
-			});
+				});
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
