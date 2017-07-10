@@ -15,20 +15,29 @@ public class Math implements Operations {
 		sched.start();
 	}
 	
+	public void stop() {
+		sched.stop();
+	}
+	
 	@Override
 	public void add(Integer x, Integer y, Future f) {
 		System.out.println("here");
 		try {
-			dispatchQueue.put( new Runnable() {
+			// System.out.println("add. id = " + Thread.currentThread().getId());
+			dispatchQueue.put(new Runnable() {
 				
 				@Override
 				public void run() {
 					try {
-						Thread.sleep(2000);
-						System.out.println("adding " + x  + " and " + y);
-						Integer c = x + y;
-						f.answer = Optional.of(c);
-						System.out.println("Ans = "+ c);
+						Thread.sleep(3000);
+						synchronized(f) {
+							// System.out.println("run. id = " + Thread.currentThread().getId());
+							System.out.println("adding " + x  + " and " + y);
+							Integer c = x + y;
+							f.answer = Optional.of(c);
+							f.notify();
+							System.out.println("Ans = "+ c);
+						}
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

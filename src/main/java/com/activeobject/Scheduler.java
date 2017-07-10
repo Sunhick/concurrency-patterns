@@ -15,6 +15,12 @@ public class Scheduler {
         }
 	}
 	
+	public void stop() {
+		for (PoolThread p : threads) {
+			p.doStop();
+		}
+	}
+	
 	public void start() {
 		for (PoolThread p : threads) {
 			p.start();

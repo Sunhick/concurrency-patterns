@@ -5,11 +5,15 @@ import java.util.Optional;
 public class Future {
 	public Optional<Integer> answer;
 	
-	public Integer getAnswer() throws Exception {
-		if (answer.isPresent()) {
-			return answer.get();
+	public synchronized Integer getAnswer() throws Exception {
+		if (answer == null || !answer.isPresent()) {
+			System.out.println("waiting for server");
+			this.wait();
 		}
-		throw new Exception("no result available");
+		
+		// System.out.println("getAnswer. id = " + Thread.currentThread().getId());
+		return answer.get();
+		// throw new Exception("no result available");
 	}
 	
 	public void show() {
