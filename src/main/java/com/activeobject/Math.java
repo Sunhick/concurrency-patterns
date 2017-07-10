@@ -15,22 +15,24 @@ public class Math implements Operations {
 	}
 	
 	@Override
-	public void addAsync(Integer x, Integer y, Future f) {
+	public void addAsync(MathArgs args, Future ftr) {
 		// System.out.println("here");
 		try {
 			// System.out.println("add. id = " + Thread.currentThread().getId());
-			sched.addTask(new Runnable() {
+			sched.addTask(new Task() {
 				
 				@Override
-				public void run() {
+				public void invoke() {
 					try {
 						Thread.sleep(3000);
-						synchronized(f) {
+						synchronized(ftr) {
 							// System.out.println("run. id = " + Thread.currentThread().getId());
 							// System.out.println("adding " + x  + " and " + y);
+							Integer x = args.getValue(MathArgs._0);
+							Integer y = args.getValue(MathArgs._1);
 							Integer c = x + y;
-							f.answer = Optional.of(c);
-							f.notify();
+							ftr.answer = Optional.of(c);
+							ftr.notify();
 							// System.out.println("Ans = "+ c);
 						}
 					} catch (InterruptedException e) {

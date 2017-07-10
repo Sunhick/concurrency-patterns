@@ -31,9 +31,15 @@ public class Scheduler {
 		}
 	}
 
-	public void addTask(Runnable runnable) throws InterruptedException {
+	public void addTask(Task task) throws InterruptedException {
 		synchronized(lock) {
-			tasks.put(runnable);
+			tasks.put(new Runnable() {
+				
+				@Override
+				public void run() {
+					task.invoke();
+				}
+			});
 		}
 	}
 	

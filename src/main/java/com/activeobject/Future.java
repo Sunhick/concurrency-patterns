@@ -4,6 +4,11 @@ import java.util.Optional;
 
 public class Future {
 	public Optional<Integer> answer;
+	private MathArgs args;
+	
+	Future(MathArgs ar) {
+		this.args = ar;
+	}
 	
 	public synchronized Integer getAnswer() throws Exception {
 		if (answer == null || !answer.isPresent()) {
@@ -18,9 +23,9 @@ public class Future {
 	
 	public void show() {
 		try {
-			System.out.println("server answer here: " + getAnswer());
+			System.out.println("Got response. Add ( " + args.getValue(MathArgs._0) + ", " +
+					args.getValue(MathArgs._1) + " ) = "+ getAnswer());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

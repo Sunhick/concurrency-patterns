@@ -12,10 +12,15 @@ public class MathProxy implements AsyncOperations, AutoCloseable {
 	
 	@Override
 	public Future add(Integer x, Integer y) {
-		Future f = new Future();
+		MathArgs args = new MathArgs();
+		args.putValue(MathArgs._0, x);
+		args.putValue(MathArgs._1, y);
+		
+		Future ftr = new Future(args);
+		
 		// place a async request for add operation.
-		math.addAsync(x, y, f);
-		return f;
+		math.addAsync(args, ftr);
+		return ftr;
 	}
 
 	@Override
