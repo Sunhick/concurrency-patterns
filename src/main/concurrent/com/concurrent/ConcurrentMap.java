@@ -11,5 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * 		ConcurrentHashMap
  */
 public class ConcurrentMap {
+	@SuppressWarnings("unused")
 	private Map<Integer, String> map = new ConcurrentHashMap<Integer, String>(10);
 }

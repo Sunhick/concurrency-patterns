@@ -21,7 +21,9 @@ import java.util.concurrent.TimeUnit;
 public class BlockingQueueDemo {
 
 	private BlockingQueue<Integer> queue;
+	@SuppressWarnings("unused")
 	private BlockingQueue<DelayElement> queue2;
+	@SuppressWarnings("unused")
 	private BlockingQueue<String> queue3;
 	
 	public BlockingQueueDemo() {

@@ -12,5 +12,6 @@ import java.util.concurrent.ConcurrentSkipListMap;
  * {@link http://tutorials.jenkov.com/java-util-concurrent/concurrentnavigablemap.html}
  */
 public class ConcurrentNavigableMapDemo {
+	@SuppressWarnings("unused")
 	private ConcurrentNavigableMap<String, Integer> map = new ConcurrentSkipListMap<String, Integer>();
 }

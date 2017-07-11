@@ -12,4 +12,12 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class BlockingDequeDemo {
 	private BlockingDeque<Integer> queue = new LinkedBlockingDeque<Integer>();
+
+	public BlockingDeque<Integer> getQueue() {
+		return queue;
+	}
+
+	public void setQueue(BlockingDeque<Integer> queue) {
+		this.queue = queue;
+	}
 }
