@@ -25,7 +25,7 @@ public class DeadlockDetection extends Thread {
 			long[] ids = bean.findDeadlockedThreads();
 
 			if (ids != null) {
-				System.out.println("Error! Deadlock detected");
+				System.out.println("(Error) Deadlock detected");
 				ThreadInfo[] threadInfos = bean.getThreadInfo(ids);
 				Arrays.asList(threadInfos).forEach(e -> {
 					StackTraceElement[] stack = e.getStackTrace();
@@ -38,21 +38,22 @@ public class DeadlockDetection extends Thread {
 				for (Thread t : threadArray) {
 					String tname = t.getName();
 					if (names.contains(tname)) {
-						System.out.println("Killing the thread : " + tname);
+						System.out.println("(Warn) Killing the thread : " + tname);
 						t.interrupt();
 					}
 				}
 				
 				// figure out graceful termination here.
+				// Abandon all hopes! :(
 				System.exit(0);
 			}
 
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
-				System.out.println("deadlock detection thread stopped forcefully.");
-				return;
 				// e.printStackTrace();
+				System.out.println("(Info) Deadlock detection thread stopped forcefully.");
+				return;
 			}
 		}
 	}

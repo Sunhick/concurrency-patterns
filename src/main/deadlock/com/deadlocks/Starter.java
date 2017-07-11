@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Starter {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		// install deadlock detection service
 		DeadlockDetection deadlockDetector = new DeadlockDetection();
 		deadlockDetector.start();
@@ -27,6 +27,8 @@ public class Starter {
 			public void run() {
 				try {
 					resources.doSomethingElse();
+					// resources.doSomething();
+					// resources.noLockCall();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -45,6 +47,19 @@ public class Starter {
 				e.printStackTrace();
 			}
 		});
+		
+		if (deadlockDetector.isAlive()) {
+			// stop deadlock detector thread forcefully.
+			deadlockDetector.interrupt();
+		}
+		
+		try {
+			// finally wait for deadlock detector thread to 
+			// stop/ whatever at this point since we called force terminate.
+			deadlockDetector.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("=== Done ===");
 	}
