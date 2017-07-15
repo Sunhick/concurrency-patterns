@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <processes id="group.0">
-	<process id="group.0.process.0" name="Main" path="~/prv/silk/comm.starter.Main"/>
+	<process id="group.0.process.0" name="Main" path="~/prv/silk/comm.starter.Main" ui=True/>
 	<process id="group.0.process.1" name="Supported" path="~/silk/comm.starter.Main">
 		<dependencies>
 			<!-- specify the dependent processes here. These have to be started before parent

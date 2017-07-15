@@ -23,9 +23,8 @@ public class Configuration {
 		stream.alias("process", Process.class);
 		stream.alias("dependencies", Dependencies.class);
 		
-//		stream.addImplicitCollection(Processes.class, "processes");
-//		stream.addImplicitCollection(Process.class, "process");
-//		stream.addImplicitCollection(Dependencies.class, "dependencies");
+		stream.addImplicitCollection(Processes.class, "process", Process.class);
+		stream.addImplicitCollection(Dependencies.class, "dependencies", Process.class);
 		
 		try {
 			String fileString = new String(Files.readAllBytes(Paths.get("/Users/Sunny/prv/github/JStarter/src/main/java/com/config/xjc" + 

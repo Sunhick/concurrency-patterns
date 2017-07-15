@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Starter extends Application {
 	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
+	private final CommandLine cmdline = new CommandLine();
 
 	public static void main(String[] args) {
 		launch(args);
