@@ -17,24 +17,20 @@ public class Configuration {
 	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
 	
 	public static void main(String[] args) {
-		XStream stream  = new XStream(new StaxDriver());
+		XStream stream  = new XStream();
 		stream.addPermission(AnyTypePermission.ANY);
-		
-		stream.alias("processes", Processes.class);
-		stream.alias("process", Process.class);
-		stream.alias("dependencies", Dependencies.class);
-		
-		stream.addImplicitCollection(Processes.class, "process", Process.class);
-		//stream.addImplicitCollection(Dependencies.class, "dependencies", Process.class);
+		stream.processAnnotations(Processes.class);
+		stream.processAnnotations(Process.class);  
 		
 		try {
-			String fileString = new String(Files.readAllBytes(Paths.get("/Users/Sunny/prv/github/JStarter/src/main/java/com/config/xjc" + 
-					"/config.xml")), 
+			String fileString = new String(Files.readAllBytes(Paths.get("config.xml")), 
 					StandardCharsets.UTF_8);
 			Processes p = (Processes)stream.fromXML(fileString);
 			
-			for (Process e : p.process) {
-				log.info(e.id);
+			log.info(p.getName());
+			for (Process e : p.getProcess()) {
+				log.info(e.getId());
+				log.info(e.getUi().toString());
 			}
 		} catch (IOException e1) {
 			log.log(Level.SEVERE,"Error in config file.", e1);
