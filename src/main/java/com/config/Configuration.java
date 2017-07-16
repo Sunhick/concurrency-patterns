@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import com.starter.Starter;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
@@ -21,17 +22,37 @@ public class Configuration {
 		stream.addPermission(AnyTypePermission.ANY);
 		stream.processAnnotations(Processes.class);
 		stream.processAnnotations(Process.class);  
+		stream.processAnnotations(Dependencies.class);
+		stream.processAnnotations(Depends.class);
 		
 		try {
-			String fileString = new String(Files.readAllBytes(Paths.get("config.xml")), 
+			String fileString = new String(Files.readAllBytes(Paths.get("/Users/Sunny/prv/github/JStarter/src/main/java/com/config" + 
+					"/config.xml")), 
 					StandardCharsets.UTF_8);
 			Processes p = (Processes)stream.fromXML(fileString);
 			
 			log.info(p.getName());
 			for (Process e : p.getProcess()) {
-				log.info(e.getId());
-				log.info(e.getUi().toString());
+				log.info(e.getName());
+				Dependencies deps = e.getDeps();
+				if (deps != null) {
+					//log.info(deps.getName().orElse("Nothing"));
+					for (Depends d : deps.getDepends()) {
+						log.info(d.getName());
+					}
+				}
 			}
+			
+			XStream xstream = new XStream(new JettisonMappedXmlDriver());
+	        xstream.setMode(XStream.NO_REFERENCES);
+	        xstream.addPermission(AnyTypePermission.ANY);
+			xstream.processAnnotations(Processes.class);
+			xstream.processAnnotations(Process.class);  
+			xstream.processAnnotations(Dependencies.class);
+			xstream.processAnnotations(Depends.class);
+
+	        System.out.println(xstream.toXML(p));
+			log.info("");
 		} catch (IOException e1) {
 			log.log(Level.SEVERE,"Error in config file.", e1);
 			e1.printStackTrace();

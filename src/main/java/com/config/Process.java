@@ -2,31 +2,48 @@ package com.config;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.thoughtworks.xstream.converters.basic.BooleanConverter;
 
 @XStreamAlias("process")
 public class Process {
-	// 	<process id="group.0.process.0" name="Main" path="~/prv/silk/comm.starter.Main" ui="true"/>
 	@XStreamAlias("id")
 	@XStreamAsAttribute
 	private String id;
-	
+
 	@XStreamAlias("name")
 	@XStreamAsAttribute
 	private String name;
-	
+
 	@XStreamAlias("path")
 	@XStreamAsAttribute
 	private String path;
 
 	@XStreamAlias("ui")
 	@XStreamAsAttribute
-	private Boolean ui;
-	
-	public String getId() { return id; }
-	
-	public String getName() { return name; }
-	
-	public String getPath() { return path; }
-	
-	public Boolean getUi() { return ui; }
+	@XStreamConverter(value=BooleanConverter.class, booleans={true}, strings={"true", "false"})
+	private Boolean ui = false;
+
+	@XStreamAlias("dependencies")
+	private Dependencies deps;
+
+	public Dependencies getDeps() {
+		return deps;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public Boolean getUi() {
+		return ui;
+	}
 }
