@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <processes id="group.0" name="group">
 	<process id="group.0.process.-1" name="Communication" path="~/prv/silk/com.starter.communication" />
-	<process id="group.0.process.0" name="Main" path="~/prv/silk/com.starter.Main" ui="true"/>
+	<!-- <process id="group.0.process.0" name="Main" path="~/prv/silk/com.starter.Main" ui="true"/>
 	<process id="group.0.process.1" name="Supported" path="~/silk/com.starter.Main">
 		<dependencies name="process.1.deps.1">
 			<depends id="group.0.process.1.dep.0" name="Supported" path="~/silk/com.starter.Main" />
@@ -12,5 +12,5 @@
 	</process>
 	<process id="group.0.process.2" name="Main" path="~/prv/silk/com.starter.Main"/>
 	<process id="group.0.process.3" name="Main" path="~/prv/silk/com.starter.Main"/>
-	<process id="group.0.process.4" name="Main" path="~/prv/silk/com.starter.Main"/>
+	<process id="group.0.process.4" name="Main" path="~/prv/silk/com.starter.Main"/> -->
 </processes>
