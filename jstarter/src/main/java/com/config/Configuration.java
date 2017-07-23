@@ -1,16 +1,15 @@
 package com.config;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.commons.io.IOUtils;
 
 import com.starter.Starter;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
-import com.thoughtworks.xstream.io.xml.StaxDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
 public class Configuration {
@@ -26,9 +25,8 @@ public class Configuration {
 		stream.processAnnotations(Depends.class);
 		
 		try {
-			String fileString = new String(Files.readAllBytes(Paths.get("/Users/Sunny/prv/github/JStarter/src/main/java/com/config" + 
-					"/config.xml")), 
-					StandardCharsets.UTF_8);
+			InputStream fs = Configuration.class.getResourceAsStream("config.xml");
+			String fileString = IOUtils.toString(fs);
 			Processes p = (Processes)stream.fromXML(fileString);
 			
 			log.info(p.getName());
@@ -36,7 +34,7 @@ public class Configuration {
 				log.info(e.getName());
 				Dependencies deps = e.getDeps();
 				if (deps != null) {
-					//log.info(deps.getName().orElse("Nothing"));
+					// log.info(deps.getName().orElse("Nothing"));
 					for (Depends d : deps.getDepends()) {
 						log.info(d.getName());
 					}

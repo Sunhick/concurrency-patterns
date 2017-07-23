@@ -21,7 +21,7 @@ public class ProcessManager {
 		}
 	}
 
-	public int exec(Class clazz) throws IOException, InterruptedException {
+	public int exec(Class<Starter> clazz) throws IOException, InterruptedException {
 		String javaHome = System.getProperty("java.home");
 		String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 		String classpath = System.getProperty("java.class.path");
