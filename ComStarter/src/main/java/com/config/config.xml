@@ -12,5 +12,4 @@
 	</process> -->
 	<process id="group.0.process.2" name="Main" path="~/prv/silk/com.starter.Main"/>
 	<process id="group.0.process.3" name="Main" path="~/prv/silk/com.starter.Main"/>
-	<process id="group.0.process.4" name="Main" path="~/prv/silk/com.starter.Main"/>
 </processes>

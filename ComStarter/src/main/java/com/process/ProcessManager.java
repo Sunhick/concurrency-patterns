@@ -27,9 +27,8 @@ public class ProcessManager {
 		String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 		String classpath = System.getProperty("java.class.path");
 		String className = clazz.getCanonicalName();
-		String args = "-ui DevUI.fxml";
 
-		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, args);
+		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, "-ui", "IssueTracking.fxml").inheritIO();
 		log.info(builder.toString());
 		Process process = builder.start();
 		processes.add(process);
@@ -39,6 +38,7 @@ public class ProcessManager {
 	}
 
 	public void killAll() {
+		log.info("Killing all the processes");
 		for (Process p : processes)
 			p.destroy();
 	}

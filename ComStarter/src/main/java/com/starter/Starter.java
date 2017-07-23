@@ -3,9 +3,9 @@ package com.starter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
@@ -22,7 +22,7 @@ public class Starter {
 		options.addOption("config", true, "configuration file name");
 		options.addOption("ui", true, "UI file");
 		
-		CommandLineParser parser = new BasicParser();
+		CommandLineParser parser = new DefaultParser();
 		ProcessManager manager = new ProcessManager();
 		
 		try {
@@ -38,6 +38,7 @@ public class Starter {
 				
 			}
 			Shell shell = cmdArgs.hasOption("ui") ? new UIShell() : new NonUIShell();
+			shell.setProcessManager(manager);
 			shell.run(cmdArgs);
 		} catch (ParseException e) {
 			log.log(Level.SEVERE, "Error in parsing.", e);

@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 
+import com.process.ProcessManager;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ public class UIShell extends Application implements Shell {
 	
 	private final static Logger log = Logger.getLogger(UIShell.class.getSimpleName());
 	private CommandLine args;
+	private static ProcessManager manager;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -37,12 +40,22 @@ public class UIShell extends Application implements Shell {
 			log.log(Level.SEVERE, null, ex);
 		}
 	}
+	
+	@Override
+	public void stop(){
+	    manager.killAll();
+	}
 
 	@Override
 	public void run(CommandLine args) {
 		this.args = args;
 		String uifile = args.getOptionValue("ui");
 		Application.launch(UIShell.class, uifile);
+	}
+
+	@Override
+	public void setProcessManager(ProcessManager p) {
+		manager = p;
 	}
 
 }
