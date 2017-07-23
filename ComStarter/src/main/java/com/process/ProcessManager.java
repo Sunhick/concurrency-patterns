@@ -12,28 +12,31 @@ import com.starter.Starter;
 public class ProcessManager {
 	private final static Logger log = Logger.getLogger(ProcessManager.class.getSimpleName());
 	private List<Process> processes = new ArrayList<Process>();
+	private List<ProcessMonitor> monitors = new ArrayList<ProcessMonitor>();
 
-	public void start(com.config.Process process) {
+	public synchronized void start(com.config.Process process) {
 		try {
 			log.info("starting process" + process.getId());
-			 exec(Starter.class);
+			 exec(process);
 		} catch (IOException | InterruptedException e) {
 			log.log(Level.SEVERE, "Error in starting the process.", e);
 		}
 	}
 
-	public int exec(Class<Starter> clazz) throws IOException, InterruptedException {
+	public int exec(com.config.Process process) throws IOException, InterruptedException {
 		String javaHome = System.getProperty("java.home");
 		String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 		String classpath = System.getProperty("java.class.path");
-		String className = clazz.getCanonicalName();
+		String className = Starter.class.getCanonicalName();
 
 		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, "-ui", "IssueTracking.fxml").inheritIO();
 		log.info(builder.toString());
-		Process process = builder.start();
-		processes.add(process);
-		// process.waitFor();
-		// return process.exitValue();
+		Process runningProcess = builder.start();
+		processes.add(runningProcess);
+		
+		ProcessMonitor monitor = new ProcessMonitor(process.getId(), runningProcess);
+		monitor.start();
+		monitors.add(monitor);
 		return 1;
 	}
 

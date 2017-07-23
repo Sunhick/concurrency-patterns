@@ -32,11 +32,13 @@ public class Starter {
 				String conf = cmdArgs.getOptionValue("config");
 				Configuration cfg = new Configuration();
 				Processes processes = cfg.parse(conf);
-				
-				
 				processes.getProcess().forEach(process -> manager.start(process));
 				
+				// add a shutdown hook so that we can kill all running process. SIGTERM
+				Runtime.getRuntime().addShutdownHook(new Thread(()-> manager.killAll()));
 			}
+			
+			
 			Shell shell = cmdArgs.hasOption("ui") ? new UIShell() : new NonUIShell();
 			shell.setProcessManager(manager);
 			shell.run(cmdArgs);
