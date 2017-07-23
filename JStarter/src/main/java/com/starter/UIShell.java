@@ -31,7 +31,6 @@ public class UIShell extends Application implements Shell {
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Dev UI");
-			log.info("Starting App");
 			primaryStage.show();
 		} catch (Exception ex) {
 			log.log(Level.SEVERE, null, ex);

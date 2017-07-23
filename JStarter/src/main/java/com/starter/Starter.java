@@ -14,7 +14,7 @@ public class Starter {
 
 	public static void main(String[] args) {
 		log.log(Level.INFO, "Starting Application");
-		Options options = new Options();
+		Options options = new Options(); 
 		options.addOption("config", true, "configuration file name");
 		options.addOption("showUI", true, "launch ui");
 		
@@ -26,5 +26,7 @@ public class Starter {
 		} catch (ParseException e) {
 			log.log(Level.SEVERE, "Error in parsing.", e);
 		}
+		
+		log.log(Level.INFO, "Application stopped.");
 	}
 }
