@@ -4,15 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.starter.Starter;
 
+import javafx.application.Platform;
+
 public class ProcessManager {
 	private final static Logger log = Logger.getLogger(ProcessManager.class.getSimpleName());
 	private List<Process> processes = new ArrayList<Process>();
 	private List<ProcessMonitor> monitors = new ArrayList<ProcessMonitor>();
+	private AtomicBoolean restart = new AtomicBoolean(true);
 
 	public synchronized void start(com.config.Process process) {
 		try {
@@ -35,12 +39,33 @@ public class ProcessManager {
 		processes.add(runningProcess);
 		
 		ProcessMonitor monitor = new ProcessMonitor(process.getId(), runningProcess);
+		monitor.onProcessKilledListener(name -> {
+			// clean up process data structures and then restart the killed process.
+			// log.info("Running on thread: " + Thread.currentThread().getName());
+			
+			// run on main thread.
+			ThreadUtils.runOnUiThread(()->{
+				// clean up process data structures and then restart the killed process.
+				log.info("Running on thread: " + Thread.currentThread().getName());
+				monitors.remove(monitor);
+				processes.remove(runningProcess);
+				try {
+					if (!restart.get()) return;
+					log.info("Restarting the process:" + process.getId());
+					exec(process);
+				} catch (IOException | InterruptedException e) {
+					log.warning("unable to restart the proces: " + process.getId());
+				}	
+			});
+			
+		});
 		monitor.start();
 		monitors.add(monitor);
 		return 1;
 	}
 
 	public void killAll() {
+		restart.set(false);
 		log.info("Killing all the processes");
 		for (Process p : processes)
 			p.destroy();
