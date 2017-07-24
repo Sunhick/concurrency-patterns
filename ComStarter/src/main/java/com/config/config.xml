@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<processes id="group.0" name="group">
+<processes id="group.0" name="parent.process" restartCount="3">
 	<!-- <process id="group.0.process.-1" name="Communication" path="~/prv/silk/com.starter.communication" />
 	<process id="group.0.process.0" name="Main" path="~/prv/silk/com.starter.Main" ui="true"/>
 	<process id="group.0.process.1" name="Supported" path="~/silk/com.starter.Main">
@@ -10,6 +10,6 @@
 			<depends id="group.0.process.1.dep.0" name="communicationv " path="~/silk/com.starter.Main" />
 		</dependencies>
 	</process> -->
-	<process id="group.0.process.2" name="Main" path="~/prv/silk/com.starter.Main"/>
-	<process id="group.0.process.3" name="Main" path="~/prv/silk/com.starter.Main"/>
+	<process id="group.0.process.1" name="frontend.0" type="frontend" path="test/frontend/TestUI.fxml"/>
+	<process id="group.0.process.2" name="backend.0" type="backend" path="test/backend/TestBackend.fxml"/>
 </processes>

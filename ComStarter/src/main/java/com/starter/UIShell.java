@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 
+import com.Root;
 import com.process.ProcessManager;
 
 import javafx.application.Application;
@@ -31,7 +32,8 @@ public class UIShell extends Application implements Shell {
 			List<String> args = params.getRaw();
 			String uifile = args.get(0);
 			
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Starter.class.getResource(uifile));
+			log.log(Level.INFO, "loading ui file: " + uifile);
+			AnchorPane page = (AnchorPane) FXMLLoader.load(Root.class.getResource(uifile));
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Dev UI");

@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
 
+import com.github.arunsoman.ipc.mappedbus.MappedBusWriter;
 import com.starter.Starter;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
@@ -36,6 +37,14 @@ public class Configuration {
 	}
 	
 	public static void main(String[] args) {
+		
+		MappedBusWriter wr = new MappedBusWriter("/Users/Sunny/prv/comm", 200L, 1, false);
+		try {
+			wr.open();
+		} catch(Exception e) {
+			log.log(Level.SEVERE, "error", e);
+		}
+		
 		XStream stream  = new XStream();
 		stream.addPermission(AnyTypePermission.ANY);
 		stream.processAnnotations(Processes.class);

@@ -18,7 +18,11 @@ public class Process {
 	@XStreamAlias("path")
 	@XStreamAsAttribute
 	private String path;
-
+	
+	@XStreamAlias("type")
+	@XStreamAsAttribute
+	private String type;
+	
 	@XStreamAlias("ui")
 	@XStreamAsAttribute
 	@XStreamConverter(value=BooleanConverter.class, booleans={true}, strings={"true", "false"})
@@ -37,6 +41,10 @@ public class Process {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getType() {
+		return type;
 	}
 
 	public String getPath() {

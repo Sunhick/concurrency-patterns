@@ -17,10 +17,16 @@ public class Starter {
 	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
 
 	public static void main(String[] args) {
+		log.info("ARGS===");
+		for (String arg : args) {
+			log.info(arg);
+		}
+		
 		log.log(Level.INFO, "Starting Application");
 		Options options = new Options(); 
 		options.addOption("config", true, "configuration file name");
 		options.addOption("ui", true, "UI file");
+		options.addOption("frontend", false, "starts process with UI view.");
 		
 		CommandLineParser parser = new DefaultParser();
 		ProcessManager manager = new ProcessManager();
@@ -39,7 +45,7 @@ public class Starter {
 			}
 			
 			
-			Shell shell = cmdArgs.hasOption("ui") ? new UIShell() : new NonUIShell();
+			Shell shell = cmdArgs.hasOption("frontend") ? new UIShell() : new NonUIShell();
 			shell.setProcessManager(manager);
 			shell.run(cmdArgs);
 		} catch (ParseException e) {

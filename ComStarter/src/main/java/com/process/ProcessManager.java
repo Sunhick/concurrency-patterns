@@ -27,13 +27,20 @@ public class ProcessManager {
 		}
 	}
 
-	public int exec(com.config.Process process) throws IOException, InterruptedException {
+	public void exec(com.config.Process process) throws IOException, InterruptedException {
 		String javaHome = System.getProperty("java.home");
 		String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 		String classpath = System.getProperty("java.class.path");
+		log.info("classpath: " + classpath);
 		String className = Starter.class.getCanonicalName();
 
-		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, "-ui", "IssueTracking.fxml").inheritIO();
+		String config = process.getPath();
+		log.info("config: " + config);
+		String type = process.getType().equals("frontend") ? "-frontend" : "";
+		
+		log.info("starting process " + process.getId() + " in mode:" + type);
+		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, 
+				"-ui", config, type).inheritIO();
 		log.info(builder.toString());
 		Process runningProcess = builder.start();
 		processes.add(runningProcess);
@@ -61,7 +68,6 @@ public class ProcessManager {
 		});
 		monitor.start();
 		monitors.add(monitor);
-		return 1;
 	}
 
 	public void killAll() {

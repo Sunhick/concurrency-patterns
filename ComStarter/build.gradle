@@ -23,6 +23,9 @@ jar {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/com.github.arunsoman.ipc/mapped-bus-ipc
+	compile group: 'com.github.arunsoman.ipc', name: 'mapped-bus-ipc', version: '0.0.5'
+	
 	// https://mvnrepository.com/artifact/commons-cli/commons-cli
 	compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
 
