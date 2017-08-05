@@ -39,7 +39,8 @@ public class ProcessManager {
 		String type = process.getType().equals("frontend") ? "-frontend" : "";
 		
 		log.info("starting process " + process.getId() + " in mode:" + type);
-		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, 
+		ProcessBuilder builder = new ProcessBuilder(javaBin,
+				"-cp", classpath, className, 
 				"-ui", config, type).inheritIO();
 		log.info(builder.toString());
 		Process runningProcess = builder.start();

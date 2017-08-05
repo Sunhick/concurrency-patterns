@@ -4,7 +4,7 @@ import javafx.application.Platform;
 
 public class ThreadUtils {
 	public static void runOnUiThread(Runnable runnable) {
-		Platform.runLater(runnable);
+		runOnMainThread(runnable);
 	}
 	
 	public static void runOnMainThread(Runnable runnable) {

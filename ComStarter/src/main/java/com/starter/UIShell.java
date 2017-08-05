@@ -44,7 +44,7 @@ public class UIShell extends Application implements Shell {
 	}
 	
 	@Override
-	public void stop(){
+	public void stop() {
 	    manager.killAll();
 	}
 

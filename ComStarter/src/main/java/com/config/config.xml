@@ -7,7 +7,7 @@
 			<depends id="group.0.process.1.dep.0" name="Supported" path="~/silk/com.starter.Main" />
 			<depends id="group.0.process.1.dep.1" name="Supported" path="~/silk/com.starter.Main" />
 			<depends id="group.0.process.1.dep.2" name="Supported" path="~/silk/com.starter.Main" />
-			<depends id="group.0.process.1.dep.0" name="communicationv " path="~/silk/com.starter.Main" />
+			<depends id="group.0.process.1.dep.0" name="communication" path="~/silk/com.starter.Main" />
 		</dependencies>
 	</process> -->
 	<process id="group.0.process.1" name="frontend.0" type="frontend" path="test/frontend/TestUI.fxml"/>
