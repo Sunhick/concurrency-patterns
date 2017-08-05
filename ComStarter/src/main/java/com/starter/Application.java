@@ -13,10 +13,10 @@ import com.config.Configuration;
 import com.config.Processes;
 import com.process.ProcessManager;
 
-public class Starter {
-	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
+public class Application {
+	private final static Logger log = Logger.getLogger(Application.class.getSimpleName());
 
-	public static void main(String[] args) {
+	public void run(String[] args) {
 		log.info("ARGS===");
 		for (String arg : args) {
 			log.info(arg);
