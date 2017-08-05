@@ -1,7 +1,6 @@
 package com.starter;
 
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +10,6 @@ import com.Root;
 import com.process.ProcessManager;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 public class UIShell extends Application implements Shell {
 
 	private final static Logger log = Logger.getLogger(UIShell.class.getSimpleName());
-	private CommandLine args;
 	private static ProcessManager manager;
 
 	@Override
@@ -50,7 +47,6 @@ public class UIShell extends Application implements Shell {
 
 	@Override
 	public void run(CommandLine args) {
-		this.args = args;
 		String uifile = args.getOptionValue("ui");
 		Application.launch(UIShell.class, uifile);
 	}

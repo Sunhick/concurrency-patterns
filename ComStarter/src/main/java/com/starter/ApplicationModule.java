@@ -8,7 +8,6 @@ import com.config.ConfigModule;
 import com.config.Configuration;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
-import com.process.ProcessManager;
 import com.process.ProcessModule;
 
 public class ApplicationModule extends AbstractModule {
