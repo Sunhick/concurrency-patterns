@@ -25,7 +25,6 @@ public class ApplicationModule extends AbstractModule {
 		bind(CommandLineParser.class).to(DefaultParser.class);
 
 		// singleton scoped objects.
-		bind(ProcessManager.class).in(Singleton.class);
 		bind(ShellFactory.class).in(Singleton.class);
 	}
 

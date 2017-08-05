@@ -6,7 +6,7 @@ public class ConfigModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-
+		bind(Configuration.class);
 	}
 
 }

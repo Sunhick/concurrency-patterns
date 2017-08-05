@@ -8,17 +8,20 @@ import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 
 import com.github.arunsoman.ipc.mappedbus.MappedBusWriter;
-import com.starter.Starter;
+import com.google.inject.Inject;
+import com.starter.Bootstrap;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
 public class Configuration {
 
-	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
-	private final XStream stream = new XStream();
+	private final static Logger log = Logger.getLogger(Bootstrap.class.getSimpleName());
+	private final XStream stream;
 
-	public Configuration() {
+	@Inject
+	public Configuration(XStream stream) {
+		this.stream = stream;
 		stream.addPermission(AnyTypePermission.ANY);
 		stream.processAnnotations(Processes.class);
 		stream.processAnnotations(Process.class);
