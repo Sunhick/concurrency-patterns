@@ -3,6 +3,6 @@
  * package-info.java
  */
 /**
- * package-info 
+ * package-info
  */
 package com.test.backend;

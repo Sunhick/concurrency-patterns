@@ -8,20 +8,26 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.starter.Starter;
-
-import javafx.application.Platform;
+import com.google.inject.Inject;
+import com.process.ProcessMonitor.ProcessMonitorFactory;
+import com.starter.Bootstrap;
 
 public class ProcessManager {
 	private final static Logger log = Logger.getLogger(ProcessManager.class.getSimpleName());
 	private List<Process> processes = new ArrayList<Process>();
 	private List<ProcessMonitor> monitors = new ArrayList<ProcessMonitor>();
 	private AtomicBoolean restart = new AtomicBoolean(true);
+	private ProcessMonitorFactory monitorFactory;
+
+	@Inject
+	ProcessManager(ProcessMonitorFactory monitorFactory) {
+		this.monitorFactory = monitorFactory;
+	}
 
 	public synchronized void start(com.config.Process process) {
 		try {
 			log.info("starting process" + process.getId());
-			 exec(process);
+			exec(process);
 		} catch (IOException | InterruptedException e) {
 			log.log(Level.SEVERE, "Error in starting the process.", e);
 		}
@@ -32,40 +38,40 @@ public class ProcessManager {
 		String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 		String classpath = System.getProperty("java.class.path");
 		log.info("classpath: " + classpath);
-		String className = Starter.class.getCanonicalName();
+		String className = Bootstrap.class.getCanonicalName();
 
 		String config = process.getPath();
 		log.info("config: " + config);
 		String type = process.getType().equals("frontend") ? "-frontend" : "";
-		
+
 		log.info("starting process " + process.getId() + " in mode:" + type);
-		ProcessBuilder builder = new ProcessBuilder(javaBin,
-				"-cp", classpath, className, 
-				"-ui", config, type).inheritIO();
+		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, "-ui", config, type)
+				.inheritIO();
 		log.info(builder.toString());
 		Process runningProcess = builder.start();
 		processes.add(runningProcess);
-		
-		ProcessMonitor monitor = new ProcessMonitor(process.getId(), runningProcess);
+
+		ProcessMonitor monitor = monitorFactory.createInstance(process.getId(), runningProcess);
 		monitor.onProcessKilledListener(name -> {
 			// clean up process data structures and then restart the killed process.
 			// log.info("Running on thread: " + Thread.currentThread().getName());
-			
+
 			// run on main thread.
-			ThreadUtils.runOnUiThread(()->{
+			ThreadUtils.runOnUiThread(() -> {
 				// clean up process data structures and then restart the killed process.
 				log.info("Running on thread: " + Thread.currentThread().getName());
 				monitors.remove(monitor);
 				processes.remove(runningProcess);
 				try {
-					if (!restart.get()) return;
+					if (!restart.get())
+						return;
 					log.info("Restarting the process:" + process.getId());
 					exec(process);
 				} catch (IOException | InterruptedException e) {
 					log.warning("unable to restart the proces: " + process.getId());
-				}	
+				}
 			});
-			
+
 		});
 		monitor.start();
 		monitors.add(monitor);

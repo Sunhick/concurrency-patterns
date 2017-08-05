@@ -13,9 +13,9 @@ public class DbProvider implements Provider<DB> {
 	public DbProvider(Map<DbType, DB> binder) {
 		this.binder = binder;
 	}
-	
+
 	@Override
 	public DB get() {
 		return binder.get(DbType.InMemoryDb);
-	}	
+	}
 }

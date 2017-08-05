@@ -6,7 +6,7 @@ public class CommonModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		
+
 	}
 
 }

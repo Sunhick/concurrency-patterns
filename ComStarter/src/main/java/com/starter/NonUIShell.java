@@ -14,11 +14,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 public class NonUIShell extends Application implements Shell {
-	
+
 	private final static Logger log = Logger.getLogger(NonUIShell.class.getSimpleName());
 	private CommandLine args;
 	private static ProcessManager manager;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		log.info("Start process in a non-window shell mode.");

@@ -19,7 +19,7 @@ public class Processes {
 	@XStreamAlias("name")
 	@XStreamAsAttribute
 	private String name;
-	
+
 	@XStreamAlias("restartCount")
 	@XStreamAsAttribute
 	private String restartCount;
@@ -31,7 +31,7 @@ public class Processes {
 	public String getId() {
 		return id;
 	}
-	
+
 	public Integer getRestartCount() {
 		return Integer.parseInt(restartCount);
 	}

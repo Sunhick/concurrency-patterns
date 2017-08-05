@@ -18,12 +18,12 @@ public class ApplicationModule extends AbstractModule {
 		// install dependent modules.
 		install(new ConfigModule());
 		install(new ProcessModule());
-		
+
 		// configure application/starter level modules here.
 		bind(Options.class);
 		bind(Configuration.class);
 		bind(CommandLineParser.class).to(DefaultParser.class);
-		
+
 		// singleton scoped objects.
 		bind(ProcessManager.class).in(Singleton.class);
 		bind(ShellFactory.class).in(Singleton.class);

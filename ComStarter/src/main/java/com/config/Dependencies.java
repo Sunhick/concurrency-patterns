@@ -17,7 +17,7 @@ public class Dependencies {
 	@XStreamAlias("name")
 	@XStreamAsAttribute
 	private Optional<String> name = Optional.of("");
-	
+
 	public List<Depends> getDepends() {
 		return depends;
 	}

@@ -4,17 +4,17 @@ import com.github.arunsoman.ipc.mappedbus.MappedBusMessage;
 import com.github.arunsoman.ipc.mappedbus.MemoryMappedFile;
 
 public class Message implements MappedBusMessage {
-	
+
 	public static final int TYPE = 0;
 	private String message;
-	
+
 	private final static int offset = 0;
 	private final static int length = 1024;
-	
+
 	public String getMessage() {
 		return message;
 	}
-	
+
 	public Message(String msg) {
 		message = msg;
 	}

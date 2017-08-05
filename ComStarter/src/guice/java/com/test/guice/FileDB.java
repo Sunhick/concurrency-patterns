@@ -7,5 +7,5 @@ public class FileDB implements DB {
 		System.out.println("File db");
 		return 7;
 	}
-	
+
 }

@@ -40,12 +40,12 @@ public class Application {
 		sub(a, b);
 		mul(a, b);
 		div(a, b);
-		
+
 		SingleOperation adder = opFactory.create(a, b, "sunil.adder");
 		adder.perform();
-		
+
 		System.out.println("Type: " + calc.getClass().getCanonicalName());
-		
+
 		dbCalc.addOperate("query.0", "query.1");
 	}
 }

@@ -10,7 +10,8 @@ public class SingleOperation implements Operation {
 	private Calculator c;
 
 	@Inject
-	public SingleOperation(@Assisted("a") Integer a, @Assisted("b") Integer b, @Assisted("Id") String id, Calculator c) {
+	public SingleOperation(@Assisted("a") Integer a, @Assisted("b") Integer b, @Assisted("Id") String id,
+			Calculator c) {
 		this.a = a;
 		this.b = b;
 		this.id = id;
@@ -25,8 +26,8 @@ public class SingleOperation implements Operation {
 		System.out.println(id);
 		System.out.println("------");
 	}
-	
+
 	public interface SingleOperationFactory {
-		SingleOperation create(@Assisted("a") Integer a, @Assisted("b") Integer b,@Assisted("Id") String id);
+		SingleOperation create(@Assisted("a") Integer a, @Assisted("b") Integer b, @Assisted("Id") String id);
 	}
 }

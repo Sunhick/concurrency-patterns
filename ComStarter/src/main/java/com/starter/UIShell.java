@@ -18,20 +18,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class UIShell extends Application implements Shell {
-	
+
 	private final static Logger log = Logger.getLogger(UIShell.class.getSimpleName());
 	private CommandLine args;
 	private static ProcessManager manager;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			log.info("Start process in a window shell mode (UI).");
-			
+
 			Parameters params = getParameters();
 			List<String> args = params.getRaw();
 			String uifile = args.get(0);
-			
+
 			log.log(Level.INFO, "loading ui file: " + uifile);
 			AnchorPane page = (AnchorPane) FXMLLoader.load(Root.class.getResource(uifile));
 			Scene scene = new Scene(page);
@@ -42,10 +42,10 @@ public class UIShell extends Application implements Shell {
 			log.log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
 	@Override
 	public void stop() {
-	    manager.killAll();
+		manager.killAll();
 	}
 
 	@Override

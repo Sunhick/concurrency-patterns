@@ -1,5 +1,12 @@
 package com.test.frontend;
 
-public class FrontendModule {
+import com.google.inject.AbstractModule;
+
+public class FrontendModule extends AbstractModule {
+
+	@Override
+	protected void configure() {
+
+	}
 
 }

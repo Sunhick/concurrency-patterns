@@ -13,12 +13,12 @@ public class DbCalculator {
 		this.calcProvider = calcProvider;
 		this.dbProvider = dbProvider;
 	}
-	
+
 	public void addOperate(String q1, String q2) {
 		DB db = dbProvider.get();
 		Integer a = db.query(q1);
 		Integer b = db.query(q2);
-		
+
 		Integer c = calcProvider.get().add(a, b);
 		System.out.println("answer = " + c);
 	}

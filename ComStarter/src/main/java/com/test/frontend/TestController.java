@@ -25,7 +25,7 @@ public class TestController {
 
 	@FXML
 	private TextArea textArea;
-	
+
 	public TestController() {
 		// Setup a writer
 		writer = new MappedBusWriter("/Users/Sunny/prv/comm", 1000L, 32, true);
@@ -43,7 +43,7 @@ public class TestController {
 		assert textArea != null : "fx:id=\"textArea\" was not injected: check your FXML file 'HelloWorld.fxml'.";
 
 		send.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				String data = textField.getText();
@@ -54,9 +54,9 @@ public class TestController {
 				} catch (EOFException e) {
 					log.severe("unable to write the message.");
 				}
-				
+
 				log.info("send button clicked. Message sent.");
-				
+
 			}
 		});
 	}

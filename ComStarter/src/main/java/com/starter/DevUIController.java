@@ -59,8 +59,8 @@ public class DevUIController {
 
 			@Override
 			public void handle(ActionEvent event) {
-			    Stage stage = (Stage) kill.getScene().getWindow();
-			    stage.close();
+				Stage stage = (Stage) kill.getScene().getWindow();
+				stage.close();
 			}
 		});
 

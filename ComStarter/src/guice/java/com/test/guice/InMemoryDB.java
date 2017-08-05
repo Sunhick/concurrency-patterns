@@ -7,5 +7,5 @@ public class InMemoryDB implements DB {
 		System.out.println("InMemory db");
 		return 5;
 	}
-	
+
 }

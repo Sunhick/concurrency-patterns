@@ -6,5 +6,5 @@ public class ShellFactory implements ShellProvider {
 	public Shell create(ShellType type) {
 		return type == ShellType.UIShell ? new UIShell() : new NonUIShell();
 	}
-	
+
 }

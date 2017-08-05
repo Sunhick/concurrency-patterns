@@ -14,49 +14,49 @@ import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
 public class Configuration {
-	
+
 	private final static Logger log = Logger.getLogger(Starter.class.getSimpleName());
-	private final XStream stream  = new XStream();
-	
+	private final XStream stream = new XStream();
+
 	public Configuration() {
 		stream.addPermission(AnyTypePermission.ANY);
 		stream.processAnnotations(Processes.class);
-		stream.processAnnotations(Process.class);  
+		stream.processAnnotations(Process.class);
 		stream.processAnnotations(Dependencies.class);
 		stream.processAnnotations(Depends.class);
 	}
-	
+
 	public Processes parse(String file) {
 		try (InputStream fs = Configuration.class.getResourceAsStream("config.xml")) {
 			String fileString = IOUtils.toString(fs);
-			return (Processes)stream.fromXML(fileString);
+			return (Processes) stream.fromXML(fileString);
 		} catch (IOException e1) {
-			log.log(Level.SEVERE,"Error in config file.", e1);
+			log.log(Level.SEVERE, "Error in config file.", e1);
 		}
 		return null;
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		MappedBusWriter wr = new MappedBusWriter("/Users/Sunny/prv/comm", 200L, 1, false);
 		try {
 			wr.open();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			log.log(Level.SEVERE, "error", e);
 		}
-		
-		XStream stream  = new XStream();
+
+		XStream stream = new XStream();
 		stream.addPermission(AnyTypePermission.ANY);
 		stream.processAnnotations(Processes.class);
-		stream.processAnnotations(Process.class);  
+		stream.processAnnotations(Process.class);
 		stream.processAnnotations(Dependencies.class);
 		stream.processAnnotations(Depends.class);
-		
+
 		try {
 			InputStream fs = Configuration.class.getResourceAsStream("config.xml");
 			String fileString = IOUtils.toString(fs);
-			Processes p = (Processes)stream.fromXML(fileString);
-			
+			Processes p = (Processes) stream.fromXML(fileString);
+
 			log.info(p.getName());
 			for (Process e : p.getProcess()) {
 				log.info(e.getName());
@@ -68,19 +68,19 @@ public class Configuration {
 					}
 				}
 			}
-			
+
 			XStream xstream = new XStream(new JettisonMappedXmlDriver());
-	        xstream.setMode(XStream.NO_REFERENCES);
-	        xstream.addPermission(AnyTypePermission.ANY);
+			xstream.setMode(XStream.NO_REFERENCES);
+			xstream.addPermission(AnyTypePermission.ANY);
 			xstream.processAnnotations(Processes.class);
-			xstream.processAnnotations(Process.class);  
+			xstream.processAnnotations(Process.class);
 			xstream.processAnnotations(Dependencies.class);
 			xstream.processAnnotations(Depends.class);
 
-	        System.out.println(xstream.toXML(p));
+			System.out.println(xstream.toXML(p));
 			log.info("");
 		} catch (IOException e1) {
-			log.log(Level.SEVERE,"Error in config file.", e1);
+			log.log(Level.SEVERE, "Error in config file.", e1);
 			e1.printStackTrace();
 		}
 	}

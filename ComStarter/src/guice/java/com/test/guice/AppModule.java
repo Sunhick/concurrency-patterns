@@ -15,7 +15,7 @@ public class AppModule extends AbstractModule {
 		MapBinder<DbType, DB> binder = MapBinder.newMapBinder(binder(), DbType.class, DB.class);
 		binder.addBinding(DbType.FileDb).to(FileDB.class);
 		binder.addBinding(DbType.InMemoryDb).to(InMemoryDB.class);
-		
+
 		bind(DB.class).toProvider(DbProvider.class);
 		bind(ScopedSingleton.class);
 	}

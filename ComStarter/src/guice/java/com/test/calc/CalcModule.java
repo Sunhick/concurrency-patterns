@@ -14,10 +14,9 @@ public class CalcModule extends AbstractModule {
 		binder.addBinding(CalcType.Scientific).to(ScientificCalculator.class);
 
 		bind(Calculator.class).toProvider(CalculatorProvider.class);
-		
+
 		// for assisted inject
-		install(new FactoryModuleBuilder()
-                .implement(Operation.class, SingleOperation.class)
-                .build(SingleOperation.SingleOperationFactory.class));
+		install(new FactoryModuleBuilder().implement(Operation.class, SingleOperation.class)
+				.build(SingleOperation.SingleOperationFactory.class));
 	}
 }

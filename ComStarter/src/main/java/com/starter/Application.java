@@ -21,15 +21,16 @@ public class Application {
 	private final CommandLineParser parser;
 	private final Configuration cfg;
 	private ShellFactory shellFactory;
-	
+
 	@Inject
-	public Application(Options options, CommandLineParser parser, ProcessManager manager, Configuration cfg, ShellFactory shellFactory) {
+	public Application(Options options, CommandLineParser parser, ProcessManager manager, Configuration cfg,
+			ShellFactory shellFactory) {
 		this.parser = parser;
 		this.manager = manager;
 		this.options = options;
 		this.cfg = cfg;
 		this.shellFactory = shellFactory;
-		
+
 		setupCmdlineOptions();
 	}
 
@@ -38,11 +39,11 @@ public class Application {
 		options.addOption("ui", true, "UI file");
 		options.addOption("frontend", false, "starts process with UI view.");
 	}
-	
+
 	public void run(String[] args) {
 		debugArgs(args);
 		log.log(Level.INFO, "Starting Application");
-		
+
 		try {
 			CommandLine cmdArgs = parser.parse(options, args);
 			// start all the other process if config file is present.
@@ -50,11 +51,11 @@ public class Application {
 				String conf = cmdArgs.getOptionValue("config");
 				Processes processes = cfg.parse(conf);
 				processes.getProcess().forEach(process -> manager.start(process));
-				
+
 				// add a shutdown hook so that we can kill all running process. SIGTERM
-				Runtime.getRuntime().addShutdownHook(new Thread(()-> manager.killAll()));
+				Runtime.getRuntime().addShutdownHook(new Thread(() -> manager.killAll()));
 			}
-			
+
 			ShellType type = cmdArgs.hasOption("frontend") ? ShellType.UIShell : ShellType.NonUIShell;
 			Shell shell = shellFactory.create(type);
 			shell.setProcessManager(manager);
@@ -62,7 +63,7 @@ public class Application {
 		} catch (ParseException e) {
 			log.log(Level.SEVERE, "Error in parsing.", e);
 		}
-		
+
 		log.log(Level.INFO, "Application stopped.");
 	}
 
