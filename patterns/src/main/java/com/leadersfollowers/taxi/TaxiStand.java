@@ -20,13 +20,18 @@ public class TaxiStand {
 	}
 	
 	public void join(TaxiDriver driver) {
+		// if there's no leader then let's promote this guys as leader.
 		if (leader == null) {
-			leader = driver;
+			promote_new_leader(driver);
 			return;
 		}
+		
+		driver.become_follower();
+		followers.add(driver);
 	}
 	
-	public void promote_new_leader() {
-		
+	public void promote_new_leader(TaxiDriver driver) {
+		driver.become_leader();
+		leader = driver;
 	}
 }
