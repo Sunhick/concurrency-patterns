@@ -4,10 +4,12 @@ public class Producer<T> implements Runnable {
 
 	private Queue<T> queue;
 	private int max;
+	private Provider<T> provider;
 
-	Producer(Queue<T> queue, int max) {
+	Producer(Queue<T> queue, int max, Provider<T> provider) {
 		this.queue = queue;
 		this.max = max;
+		this.provider = provider;
 	}
 
 	@Override
@@ -16,7 +18,7 @@ public class Producer<T> implements Runnable {
 			// This producer know in advance that object types are
 			// integers. One good way to prevent that is to inject
 			// a object / element provider factory.
-			T element = (T) new Integer(i);
+			T element = provider.provide();
 			queue.put(element);
 			try {
 				Thread.sleep(100);

@@ -9,11 +9,15 @@ public class Starter {
 	public static void main(String[] args) {
 		int max = 20;
 		
-		Queue<Integer> queue = new GuardedQueue<>();
+		Provider<Integer> intProvider = new IntegerProvider();
+		Provider<String> strProvider = new StringProvider();
+		
+		Queue<String> queue = new GuardedQueue<>();
+		
 		List<Thread> workers = new ArrayList<>(
 				Arrays.asList(
-						new Thread(new Producer<Integer>(queue, max)),
-						new Thread(new Consumer<Integer>(queue, max))
+						new Thread(new Producer<>(queue, max, strProvider)),
+						new Thread(new Consumer<>(queue, max))
 						)
 				);
 		
