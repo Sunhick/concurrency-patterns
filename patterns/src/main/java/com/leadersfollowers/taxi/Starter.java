@@ -3,14 +3,15 @@ package com.leadersfollowers.taxi;
 public class Starter {
 
 	public static void main(String[] args) {
-		TaxiStand seattleStand = new TaxiStand();
-		TaxiDriver john = new TaxiDriver();
-		TaxiDriver olive = new TaxiDriver();
-		TaxiDriver sunil = new TaxiDriver();
+		Terminal seattleTerminal = new Terminal();
+		TaxiStand taxiStand = new TaxiStand();
+		TaxiDriver john = new TaxiDriver(seattleTerminal, taxiStand, "John");
+		TaxiDriver olive = new TaxiDriver(seattleTerminal, taxiStand, "Olive");
+		TaxiDriver sunil = new TaxiDriver(seattleTerminal, taxiStand, "Sunil");
 		
-		seattleStand.join(john);
-		seattleStand.join(olive);
-		seattleStand.join(sunil);
+		taxiStand.join(john);
+		taxiStand.join(olive);
+		taxiStand.join(sunil);
 	}
 
 }

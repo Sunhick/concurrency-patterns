@@ -5,5 +5,6 @@ package com.leadersfollowers.taxi;
  *
  */
 public interface Line {
-	
+	EventType get_type();
+	Passenger wait_for_passenger();
 }

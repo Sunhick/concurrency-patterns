@@ -13,13 +13,18 @@ import java.util.List;
 public class Terminal {
 
 	private List<Line> handles;
+	private Line handle;
 
 	public Terminal() {
 		handles = new ArrayList<>(Arrays.asList(new TaxiLine()));
 	}
 
-	public void handle_events() {
-
+	public Passenger handle_events(EventType type) {
+		select(type);
+		
+		// wait for the event.
+		Passenger passenger = handle.wait_for_passenger();
+		return passenger;
 	}
 
 	public void deactivate_handle() {
@@ -30,8 +35,18 @@ public class Terminal {
 
 	}
 
-	public void select() {
+	private void select(EventType type) {
+		handle = get_handle(type);
+	}
 
+	private Line get_handle(EventType type) {
+		for(Line h : handles) {
+			if (h.get_type().equals(type)) {
+				return h;
+			}
+		}
+		
+		return null;
 	}
 
 }
