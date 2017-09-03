@@ -6,7 +6,7 @@ public class Producer<T> implements Runnable {
 	private int max;
 	private Provider<T> provider;
 
-	Producer(Queue<T> queue, int max, Provider<T> provider) {
+	public Producer(Queue<T> queue, int max, Provider<T> provider) {
 		this.queue = queue;
 		this.max = max;
 		this.provider = provider;

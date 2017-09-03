@@ -56,6 +56,6 @@ public class GuardedQueue<T extends Object> implements Queue<T> {
 
 	@Override
 	public synchronized boolean isFull() {
-		return count + 1 == MAX;
+		return count == MAX;
 	}
 }

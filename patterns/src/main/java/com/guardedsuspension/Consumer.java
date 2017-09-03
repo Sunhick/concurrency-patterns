@@ -5,7 +5,7 @@ public class Consumer<T> implements Runnable {
 	private Queue<T> queue;
 	private int max;
 	
-	Consumer(Queue<T> queue, int max) {
+	public Consumer(Queue<T> queue, int max) {
 		this.queue = queue;
 		this.max = max;
 	}
