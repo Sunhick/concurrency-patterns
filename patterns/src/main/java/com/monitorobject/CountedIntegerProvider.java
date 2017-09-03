@@ -13,7 +13,7 @@ public class CountedIntegerProvider implements Provider<Integer> {
 	public Integer provide() {
 		index++;
 		Integer value = random.nextInt();
-		// System.out.println("Providing value = " + value + " count: " + index);
+		System.out.println("Providing value = " + value + " count: " + index);
 		return value;
 	}
 
