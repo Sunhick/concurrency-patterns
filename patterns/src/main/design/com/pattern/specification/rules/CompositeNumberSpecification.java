@@ -1,4 +1,4 @@
-package com.pattern.specification;
+package com.pattern.specification.rules;
 
 import com.pattern.specification.core.AbstractSpecification;
 

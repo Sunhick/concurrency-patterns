@@ -3,6 +3,10 @@ package com.pattern.specification;
 import java.util.List;
 
 import com.pattern.specification.core.NotSpecification;
+import com.pattern.specification.rules.CompositeNumberSpecification;
+import com.pattern.specification.rules.EvenNumberSpecification;
+import com.pattern.specification.rules.PrimeNumberSpecification;
+import com.pattern.specification.rules.SquaredNumberSpecification;
 
 public class Starter {
 
