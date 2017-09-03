@@ -1,4 +1,6 @@
-package com.pattern.specification;
+package com.pattern.specification.core;
+
+import com.pattern.specification.Specification;
 
 public class NotSpecification<T> extends AbstractSpecification<T> {
 	

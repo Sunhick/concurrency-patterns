@@ -1,5 +1,7 @@
 package com.pattern.specification;
 
+import com.pattern.specification.core.AbstractSpecification;
+
 public class CompositeNumberSpecification<T> extends AbstractSpecification<T> {
 
 	@Override

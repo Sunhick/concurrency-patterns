@@ -2,6 +2,8 @@ package com.pattern.specification;
 
 import java.util.List;
 
+import com.pattern.specification.core.NotSpecification;
+
 public class Starter {
 
 	public static void main(String[] args) {

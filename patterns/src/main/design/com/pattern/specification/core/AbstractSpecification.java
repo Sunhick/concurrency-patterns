@@ -1,4 +1,6 @@
-package com.pattern.specification;
+package com.pattern.specification.core;
+
+import com.pattern.specification.Specification;
 
 public abstract class AbstractSpecification<T> implements Specification<T> {
 
