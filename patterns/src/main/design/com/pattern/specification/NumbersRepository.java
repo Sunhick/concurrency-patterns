@@ -22,11 +22,13 @@ public class NumbersRepository<T> {
 	public List<T> getNumbers() {
 		List<T> numbers = new ArrayList<>();
 		
-		while (count > 0) {
+		int i = count;
+		while (i > 0) {
 			numbers.add(provider.provide());
-			count--;
+			i--;
 		}
 		
+		provider.reset();
 		return numbers;
 	}
 	

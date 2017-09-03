@@ -10,5 +10,10 @@ public class IntegerProvider implements Provider<Integer> {
 	public Integer provide() {
 		return counter++;
 	}
+
+	@Override
+	public void reset() {
+		counter = 0;
+	}
 	
 }
