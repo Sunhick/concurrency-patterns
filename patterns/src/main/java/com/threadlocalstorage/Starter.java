@@ -23,6 +23,7 @@ public class Starter {
 			}
 		});
 
+		tm.printId();
 		System.out.println("=== Done ===");
 	}
 

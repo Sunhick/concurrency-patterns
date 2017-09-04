@@ -13,7 +13,14 @@ public class TransactionManager implements Runnable {
 	 * to handle multiple transactions.
 	 */
 	// private static String transactionId;
-	private static ThreadLocal<String> context = new ThreadLocal<>();
+	
+	/**
+	 * Thread local is java's implementation. ThreadLocalStorage is a custom
+	 * implementation supposed to behave like a ThreadLocal. ThreadLocalStorage
+	 * custom implementation is only for learning purposes.
+	 */
+	// private static ThreadLocal<String> context = new ThreadLocal<>();
+	private static ThreadLocalStorage<String> context = new ThreadLocalStorage<>();
 
 	public void startTransaction() {
 		String id = UUID.randomUUID().toString();
@@ -59,6 +66,6 @@ public class TransactionManager implements Runnable {
 	public void run() {
 		startTransaction();
 		safeSleep(1000);
-		stopTransaction();
+		// stopTransaction();
 	}
 }
