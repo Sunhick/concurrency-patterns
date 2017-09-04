@@ -2,6 +2,8 @@ package com.activeobject;
 
 import java.util.Optional;
 
+import com.scheduler.Scheduler;
+
 public class Math implements Operations {
 	private final Scheduler sched;
 	

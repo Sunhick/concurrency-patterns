@@ -1,8 +1,11 @@
-package com.activeobject;
+package com.scheduler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import com.activeobject.Task;
+import com.threadpool.PoolThread;
 
 public class Scheduler {
 	private BlockingQueue<Runnable> tasks = new LinkedBlockingQueue<>();
