@@ -15,5 +15,7 @@ required and necessary to solve the problem.
 ### Good reads:
 
 [Out of the tar pit -- Ben Moseley & Peter Marks](http://curtclifton.net/papers/MoseleyMarks06a.pdf)
+
 [No silver bullet -- Fredrick brooks](http://worrydream.com/refs/Brooks-NoSilverBullet.pdf)
+
 [Quora - what are essential & accidental complexities?](https://www.quora.com/What-are-essential-and-accidental-complexity)
