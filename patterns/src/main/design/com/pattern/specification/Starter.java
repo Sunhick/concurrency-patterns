@@ -20,9 +20,7 @@ public class Starter {
 		Specification<Integer> specs = evens.not(squares);
 		
 		List<Integer> evenNumbers = numbers.filter(specs);
-		for (int e : evenNumbers) {
-			// System.out.println(e);
-		}
+		// evenNumbers.forEach(System.out::println);
 		
 		System.out.println("Even Count: " + evenNumbers.size());
 		
@@ -30,40 +28,30 @@ public class Starter {
 		Specification<Integer> spec2 = odds.and(squares);
 		
 		List<Integer> oddsNumbers = numbers.filter(spec2);
-		for (int e : oddsNumbers) {
-			// System.out.println(e);
-		}
+		// oddsNumbers.forEach(System.out::println);
 		
 		System.out.println("Odd Count: " + oddsNumbers.size());
 		
 		Specification<Integer> composite = new CompositeNumberSpecification<>();
 		List<Integer> composites = numbers.filter(composite);
-		for (Integer e : composites) {
-			// System.out.println(e);
-		}
+		// composites.forEach(System.out::println);
 		System.out.println("composites: " + composites.size());
 		
 		// Even Composites.
 		Specification<Integer> evenComposites = evens.and(composite);
 		List<Integer> ec = numbers.filter(evenComposites);
-		for (Integer e : ec) {
-			// System.out.println(e);
-		}
+		// ec.forEach(System.out::println);
 		System.out.println("even composites:" + ec.size());
 		
 		// odd compsites
 		Specification<Integer> oddComposites = odds.and(composite);
 		List<Integer> oc = numbers.filter(oddComposites);
-		for (Integer e : oc) {
-			// System.out.println(e);
-		}
+		// oc.forEach(System.out::println);
 		System.out.println("odd composites:" + oc.size());
 		
 		Specification<Integer> primeSpec = new PrimeNumberSpecification<>();
 		List<Integer> primes = numbers.filter(primeSpec);
-		for (int e : primes) {
-			// System.out.println(e);
-		}
+		// primes.forEach(System.out::println);
 		// Dont' use this technique to count the number of primes.
 		// It's a tedius, time consuming & compute heavy operation.
 		// Use the prime counting method if you just want number of primes.
@@ -73,6 +61,11 @@ public class Starter {
 		// https://en.wikipedia.org/wiki/Prime-counting_function
 		// online tool: https://primes.utm.edu/nthprime/index.php
 		System.out.println("Primes: " + primes.size());
+		
+		Specification<Integer> oddCmpSqr = odds.and(composite).and(squares);
+		List<Integer> f = numbers.filter(oddCmpSqr);
+		// f.forEach(System.out::println);
+		System.out.println("odd composite perfect square: " + f.size());
 		
 		System.out.println("=== done ===");
 	}
