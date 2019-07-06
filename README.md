@@ -4,6 +4,8 @@
 
 [/Using Juice](https://github.com/Sunhick/concurrency-patterns/tree/master/TestGuice/src/main/java/com/test) Practing how to use Guice f/w.
 
+[/Log4j2 logging](https://github.com/Sunhick/concurrency-patterns/blob/master/LearnLogging/) Log4j2 logging f/w. Jump to [log4j2 yaml configuration file](https://github.com/Sunhick/concurrency-patterns/blob/master/LearnLogging/src/main/resources/log4j2.yaml)
+
 [/Design pattern](https://github.com/Sunhick/concurrency-patterns/tree/master/patterns/src/main/design/com/pattern) Some interesting and less known design patterns.
 
 [/concurrency](https://github.com/Sunhick/concurrency-patterns/tree/master/patterns/src/main/concurrent/com/concurrent) Usage of concurrency package in java.
