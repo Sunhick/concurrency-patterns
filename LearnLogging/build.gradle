@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.4"
+    }
+}
+
+apply plugin: "net.ltgt.apt"
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group 'LearnLogging'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+def lombokVersion = '1.18.4'
+def log4jVersion = '2.11.1'
+def jacksonDataBindVersion = '2.5.4'
+def jacksonDataFmtVersion = '2.9.9'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // lombok
+    compile "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    // log4j2
+    compile "org.apache.logging.log4j:log4j-api:$log4jVersion"
+    compile "org.apache.logging.log4j:log4j-core:$log4jVersion"
+
+    // log4j2 yaml requires jackson
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDataBindVersion"
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataFmtVersion"
+}
