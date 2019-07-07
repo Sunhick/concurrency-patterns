@@ -11,6 +11,8 @@ import com.local.sensors.DaggerSensorsComponent;
 import com.local.sensors.SensorsComponent;
 import lombok.extern.log4j.Log4j2;
 
+import java.util.stream.IntStream;
+
 @Log4j2
 public class Starter {
     public static void main(String[] args) {
@@ -34,6 +36,8 @@ public class Starter {
 
         Robot robo = robotComponent.createRobo();
 
-        robo.move("Seattle");
+        IntStream.range(1, 2000).forEach(e ->
+                robo.move("Seattle")
+        );
     }
 }
