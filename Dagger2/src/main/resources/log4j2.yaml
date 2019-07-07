@@ -1,0 +1,30 @@
+Configuration:
+  name: default
+
+  Properties:
+    Property:
+      name: fileName
+      value: log.txt
+
+  Appenders:
+    Console:
+      - name: Terminal
+        target: SYSTEM_OUT
+        PatternLayout:
+          pattern: "%highlight{%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L - %m%n}"
+
+    File:
+      - name: LogFile
+        fileName: ${fileName}
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L - %m%n"
+
+  Loggers:
+    Root:
+      level: all
+      AppenderRef:
+        - ref: Terminal
+          level: debug
+
+        - ref: LogFile
+          level: trace

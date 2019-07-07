@@ -1,0 +1,36 @@
+2019-07-06 15:49:25 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 15:49:50 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 15:50:18 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 15:50:38 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 15:51:25 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 15:51:58 DEBUG com.local.Starter:8 - Hello Welcome to Dagger2
+2019-07-06 16:35:07 DEBUG com.local.Starter:11 - Hello Welcome to Dagger2
+2019-07-06 16:39:04 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:39:04 INFO  com.local.ai.Brain:21 - Move provisioned. Battery is good
+2019-07-06 16:39:04 INFO  com.local.robot.Robot:22 - Delegate to motion controller
+2019-07-06 16:39:04 DEBUG com.local.sensors.Gprs:16 - Finding directions to Seattle
+2019-07-06 16:39:04 INFO  com.local.locomotion.Locomotion:20 - Moving to location: Seattle Directions: null
+2019-07-06 16:39:40 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:39:40 ERROR com.local.ai.Brain:25 - Battery at critical level. Move declined at this moment
+2019-07-06 16:39:40 WARN  com.local.robot.Robot:27 - can't move to Seattle. Perhaps another time
+2019-07-06 16:42:37 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:42:37 INFO  com.local.ai.Brain:21 - Move provisioned. Battery is good
+2019-07-06 16:42:37 INFO  com.local.robot.Robot:22 - Delegate to motion controller
+2019-07-06 16:42:37 DEBUG com.local.sensors.Gprs:16 - Finding directions to Seattle
+2019-07-06 16:42:37 INFO  com.local.locomotion.Locomotion:20 - Moving to location: Seattle Directions: null
+2019-07-06 16:43:19 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:43:50 INFO  com.local.ai.Brain:21 - Move provisioned. Battery is good
+2019-07-06 16:43:50 INFO  com.local.robot.Robot:22 - Delegate to motion controller
+2019-07-06 16:43:50 DEBUG com.local.sensors.Gprs:16 - Finding directions to Seattle
+2019-07-06 16:43:50 INFO  com.local.locomotion.Locomotion:20 - Moving to location: Seattle Directions: null
+2019-07-06 16:44:01 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:44:41 INFO  com.local.ai.Brain:21 - Move provisioned. Battery is good
+2019-07-06 16:44:41 INFO  com.local.robot.Robot:22 - Delegate to motion controller
+2019-07-06 16:44:41 DEBUG com.local.sensors.Gprs:16 - Finding directions to Seattle
+2019-07-06 16:44:41 INFO  com.local.locomotion.Locomotion:20 - Moving to location: Seattle Directions: null
+2019-07-06 16:45:10 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:48:19 DEBUG com.local.Starter:17 - Hello Welcome to Dagger2
+2019-07-06 16:48:29 INFO  com.local.ai.Brain:21 - Move provisioned. Battery is good
+2019-07-06 16:48:29 INFO  com.local.robot.Robot:22 - Delegate to motion controller
+2019-07-06 16:48:29 DEBUG com.local.sensors.Gprs:16 - Finding directions to Seattle
+2019-07-06 16:48:29 INFO  com.local.locomotion.Locomotion:23 - Moving to location: Seattle Directions: null
