@@ -21,6 +21,11 @@ Configuration:
         PatternLayout:
           pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L - %m%n"
 
+      - name: flog
+        fileName: flog.txt
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L - %m%n"
+
     RollingFile:
       - name: SizeCappedFileAppender
         fileName: ${sizeCappedFileName}
@@ -45,3 +50,9 @@ Configuration:
 
         - ref: SizeCappedFileAppender
           level: trace
+
+    Logger:
+      - name: com.local.robot
+        level: trace
+        AppenderRef:
+          - ref: flog
