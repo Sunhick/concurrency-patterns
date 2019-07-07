@@ -30,21 +30,29 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    
+    compile (
+            // lombok
+            "org.projectlombok:lombok:$lombokVersion",
+            "org.apache.logging.log4j:log4j-api:$log4jVersion",
 
-    // lombok
-    compile "org.projectlombok:lombok:$lombokVersion"
-    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+            // log4j2 yaml requires jackson
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonDataBindVersion",
+            "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataFmtVersion",
 
-    // log4j2
-    compile "org.apache.logging.log4j:log4j-api:$log4jVersion"
-    compile "org.apache.logging.log4j:log4j-core:$log4jVersion"
+            // log4j2
+            "org.apache.logging.log4j:log4j-core:$log4jVersion",
 
-    // log4j2 yaml requires jackson
-    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDataBindVersion"
-    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataFmtVersion"
+            // dagger
+            "com.google.dagger:dagger:$daggerVersion"
+    )
 
-    // dagger
-    compile "com.google.dagger:dagger:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    annotationProcessor (
+            "org.projectlombok:lombok:$lombokVersion",
+            "com.google.dagger:dagger-compiler:$daggerVersion"
+    )
+
+    apt (
+            "com.google.dagger:dagger-compiler:$daggerVersion"
+    )
 }
