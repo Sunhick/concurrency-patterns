@@ -1,0 +1,5 @@
+rootProject.name = 'ExpModule3'
+
+include 'greet-main'
+include 'greet-hello'
+include 'greet-intf'

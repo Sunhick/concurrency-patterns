@@ -17,20 +17,16 @@ repositories {
 dependencies {
     testCompile "junit:junit:4.12"
 
+//    compile project(":greet-intf")
+//    compile project(":greet-hello")
+
     compile files("../greet-intf/build/libs/greet-intf-1.0-SNAPSHOT.jar")
     compile files("../greet-hello/build/libs/greet-hello-1.0-SNAPSHOT.jar")
-
+    compile files("../greet-hola/build/libs/greet-hola-1.0-SNAPSHOT.jar")
 
     compileOnly 'org.projectlombok:lombok:edge-SNAPSHOT'
     annotationProcessor 'org.projectlombok:lombok:edge-SNAPSHOT'
 
-//    // log4j2
-//    compile "org.apache.logging.log4j:log4j-api:2.11.1"
-//    compile "org.apache.logging.log4j:log4j-core:2.11.1"
-//    compile "com.fasterxml.jackson.core:jackson-databind:2.5.4"
-//    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.9"
-//    compile 'org.slf4j:slf4j-api:1.7.25'
-//    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.9.0'
     compile "org.slf4j:slf4j-jdk14:1.8.0-alpha2"
 
 }
@@ -41,11 +37,23 @@ compileJava {
                 '--module-path', classpath.asPath,
         ]
 
-        println(classpath.asPath)
         classpath = files()
     }
 }
 
 application {
     mainClassName = 'greet.main.Runner'
+}
+
+run {
+    doFirst {
+        def moduleName = "greet.main.main/" + application.mainClassName
+
+        jvmArgs = [
+                '--module-path', classpath.asPath,
+                '--module', moduleName // <2>
+        ]
+
+        classpath = files()
+    }
 }
