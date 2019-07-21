@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'greet-hello'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile files("../greet-intf/build/libs/greet-intf-1.0-SNAPSHOT.jar")
+}
+
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+        ]
+
+        println(classpath.asPath)
+        classpath = files()
+    }
+}
